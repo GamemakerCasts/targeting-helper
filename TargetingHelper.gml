@@ -1,6 +1,6 @@
-function TargetingHelper() constructor {
+function TargetingHelper() {
     
-    static get_in_radius = function(x, y, obj, radius, filters = undefined) {
+    static get_in_radius = function(x, y, radius, obj, filters = undefined) {
         var list = ds_list_create();
         collision_circle_list(x, y, radius, obj, false, false, list, true);
 
@@ -8,8 +8,6 @@ function TargetingHelper() constructor {
 
         for (var i = 0; i < ds_list_size(list); i++) {
             var inst = list[| i];
-			
-            if (!instance_exists(inst)) continue;
 			
 			// Check filter, if provided
 			if (!should_include(inst, filters)) continue;
@@ -21,8 +19,8 @@ function TargetingHelper() constructor {
         return results;
     };
 
-    static get_nearest = function(x, y, obj, radius, filters = undefined) {
-        var nearby = TargetingHelper.get_in_radius(x, y, obj, radius, filters);
+    static get_nearest = function(x, y, radius, obj, filters = undefined) {
+        var nearby = TargetingHelper.get_in_radius(x, y, radius, obj, filters);
         var nearest = noone;
 
         if(array_length(nearby) > 0) {
@@ -38,15 +36,13 @@ function TargetingHelper() constructor {
 	    if (is_array(filters)) {
 	        for (var i = 0; i < array_length(filters); i++) {
 	            var f = filters[i];
-	            if (is_callable(f) && !f(inst)) return false;
+	            if (!f(inst)) return false;
 	        }
 	        return true;
 	    }
-
-	    if (is_callable(filters)) {
-	        return filters(inst);
-	    }
-
-	    return true;
+		
+		return filters(inst);
 	}
 }
+
+TargetingHelper();
