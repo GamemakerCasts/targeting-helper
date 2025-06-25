@@ -69,6 +69,22 @@ var targets = TargetingHelper.get_in_radius(x, y, obj_enemy, 300, [
 ]);
 ```
 
+### 🧠 Multiple filters (global function)
+```gml
+// defined somewhere in a script file
+function can_target(inst){
+	return inst.can_be_targeted == true;
+}
+
+// in the step event of an object
+var instance = TargetingHelper.get_nearest(x, y, 300, obj_Enemy, [
+	function(inst) {
+		return inst.hp <= 5;
+	},
+	can_target
+]);
+```
+
 ### 🎯 Nearest target with filters
 
 ```gml
