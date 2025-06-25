@@ -63,7 +63,7 @@ var targets = TargetingHelper.get_in_radius(x, y, 200, obj_enemy, function(inst)
 ### 🧠 Multiple filters (HP + targetable flag)
 
 ```gml
-var targets = TargetingHelper.get_in_radius(x, y, obj_enemy, 300, [
+var targets = TargetingHelper.get_in_radius(x, y, 300, obj_enemy, [
     function(inst) { return inst.hp <= 5; },
     function(inst) { return inst.can_be_targeted == true; }
 ]);
@@ -88,7 +88,7 @@ var instance = TargetingHelper.get_nearest(x, y, 300, obj_Enemy, [
 ### 🎯 Nearest target with filters
 
 ```gml
-var target = TargetingHelper.get_nearest(x, y, obj_enemy, 300, [
+var target = TargetingHelper.get_nearest(x, y, 300, obj_enemy, [
     function(inst) { return inst.hp <= 5; },
     function(inst) { return inst.can_be_targeted == true; }
 ]);
@@ -101,6 +101,8 @@ if (target != noone) {
 ---
 
 ## 📜 API Reference
+
+### TargetingHelper comes predefined, thus you have access to everything with TargetingHelper.
 
 ### `get_in_radius(x, y, radius, obj, filters?)`
 - Returns an array of instances within a radius
